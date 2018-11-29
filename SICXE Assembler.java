@@ -336,12 +336,10 @@ public class SICXE {
             {
                 if (k == 0)
                 {
-                   // System.out.println(label[k] + " " + "000" +address[k]);
                     map.put(label[k],"000" + address[k]);   
                 }
                 else
                 {
-                   // System.out.println(label[k] + " " + address[k]);
                     map.put(label[k], address[k]);
                 }
             }
@@ -516,35 +514,34 @@ for(i =0; i < 46; i++)
                     int cond = hexToDec(binaryToHex(hexToBinary(t))) - hexToDec(binaryToHex(hexToBinary(address[i+1])));
                     if(-2084 <= cond || cond <= 2047)
                     {
-
-                    nixbpe[0] = "1";
-                    nixbpe[1] = "0";
-                    nixbpe[2] = "0";
-                    nixbpe[3] = "0";
-                    nixbpe[4] = "1";
-                    nixbpe[5] = "0";
-                    opBin = opBin+""+nixbpe[0]+""+nixbpe[1];
-                    opBin = binaryToHex(opBin);
-                    nix = nixbpe[2]+""+nixbpe[3]+""+nixbpe[4]+""+nixbpe[5];
-                    decimal = Integer.parseInt(nix,2);
-                    nix = Integer.toString(decimal,16);
-                    opcode[i] = opBin+""+nix+""+io;
+                        nixbpe[0] = "1";
+                        nixbpe[1] = "0";
+                        nixbpe[2] = "0";
+                        nixbpe[3] = "0";
+                        nixbpe[4] = "1";
+                        nixbpe[5] = "0";
+                        opBin = opBin+""+nixbpe[0]+""+nixbpe[1];
+                        opBin = binaryToHex(opBin);
+                        nix = nixbpe[2]+""+nixbpe[3]+""+nixbpe[4]+""+nixbpe[5];
+                        decimal = Integer.parseInt(nix,2);
+                        nix = Integer.toString(decimal,16);
+                        opcode[i] = opBin+""+nix+""+io;
                     }
                     else if(0 <= cond || cond <= 4095)
                     {
                         io = decToHex(hexToDec(binaryToHex(hexToBinary(t))) - hexToDec(binaryToHex(hexToBinary(base))));
-                    nixbpe[0] = "1";
-                    nixbpe[1] = "0";
-                    nixbpe[2] = "0";
-                    nixbpe[3] = "1";
-                    nixbpe[4] = "0";
-                    nixbpe[5] = "0";
-                    opBin = opBin+""+nixbpe[0]+""+nixbpe[1];
-                    opBin = binaryToHex(opBin);
-                    nix = nixbpe[2]+""+nixbpe[3]+""+nixbpe[4]+""+nixbpe[5];
-                    decimal = Integer.parseInt(nix,2);
-                    nix = Integer.toString(decimal,16);
-                    opcode[i] = opBin+""+nix+""+io;
+                        nixbpe[0] = "1";
+                        nixbpe[1] = "0";
+                        nixbpe[2] = "0";
+                        nixbpe[3] = "1";
+                        nixbpe[4] = "0";
+                        nixbpe[5] = "0";
+                        opBin = opBin+""+nixbpe[0]+""+nixbpe[1];
+                        opBin = binaryToHex(opBin);
+                        nix = nixbpe[2]+""+nixbpe[3]+""+nixbpe[4]+""+nixbpe[5];
+                        decimal = Integer.parseInt(nix,2);
+                        nix = Integer.toString(decimal,16);
+                        opcode[i] = opBin+""+nix+""+io;
                     }
             }
             else if (var[i].contains(",X"))
@@ -606,7 +603,7 @@ for(i =0; i < 46; i++)
                     }
                     else if(0 <= cond && cond <= 4095 || cond < -2084)
                     {
-                        io = decToHex(hexToDec(binaryToHex(hexToBinary(t))) - hexToDec(base));
+                    io = decToHex(hexToDec(binaryToHex(hexToBinary(t))) - hexToDec(base));
                     nixbpe[0] = "1";
                     nixbpe[1] = "1";
                     nixbpe[2] = "0";
@@ -619,7 +616,6 @@ for(i =0; i < 46; i++)
                     decimal = Integer.parseInt(nix,2);
                     nix = Integer.toString(decimal,16);
                     opcode[i] = opBin+""+nix+""+io;
-               //     System.out.println(opBin+""+nix+""+io);
                     }
             }
             else if(inst[i].equals("RSUB"))
@@ -631,7 +627,7 @@ for(i =0; i < 46; i++)
     }
     else if ("2".equals(Format))
     {
-         HashMap<String, String> R = new HashMap<>();
+        HashMap<String, String> R = new HashMap<>();
         R.put("X", "1");
         R.put("A", "0");
         R.put("S", "4");
@@ -649,7 +645,7 @@ for(i =0; i < 46; i++)
 }
 System.out.println(map);
 System.err.println("LABEL\t\t\tINSTRUCTIONS\t\tVARIABLES\t\tADDRESS\t\t\tOPCODE");
-System.out.println("");
+System.out.println();
 String EndAddress = null;
 for (i = 0; i < 46; i++)
 {
