@@ -3,7 +3,7 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Scanner;
 public class SICXE {
-        
+        //***** Functions For Conversions *****
     public static boolean isNumeric(String str)  
 {  
   try  
@@ -96,10 +96,11 @@ public class SICXE {
     else //character is '0', '1',....,'9'
         return character - '0';
 }
+        //***** Start of the program *****
         public static void main(String[] args) throws FileNotFoundException {
         Converter.initialize();
         File sicxe = new File("inSICXE.txt");
-        if(sicxe.exists())
+        if(sicxe.exists()) // Check if the file exists
         {
             System.out.println("File Found");
         }
@@ -107,25 +108,27 @@ public class SICXE {
         {
             System.err.println("File Is Not Found");
         }
-        String[] inst = new String[100];
-        String[] label = new String[100];
-        String[] address = new String[100];
-        String[] var = new String[100];
-        Scanner scan = new Scanner(sicxe);
+        String[] inst = new String[100]; //Array for storing instructions
+        String[] label = new String[100]; //Array for storing Labels
+        String[] address = new String[100]; //Array for storing Address
+        String[] var = new String[100]; //Array for storing Variables
+        Scanner scan = new Scanner(sicxe); //Scanning the file
         String FL = scan.nextLine();
-        String []Split=FL.split(" ");
-        String strtAddress=Split[2];
-        String progName= Split[0];
-        address[0]=strtAddress;
-        address[1]=strtAddress;
-        Scanner scan2=new Scanner(sicxe);
+        String []Split=FL.split(" "); 
+        String strtAddress=Split[2]; //Storing the start address
+        String progName= Split[0]; //Storing the program Name
+        address[0]=strtAddress; //Start address in first index
+        address[1]=strtAddress; //Start address in the second index bec. start address used in the first and second instruction
+        Scanner scan2=new Scanner(sicxe); // New Scanner to re-scan the file
         String formatType=null;
         int i=0;
         int j,result,Line,prevRes=0;
-    while(scan2.hasNext()){
-        String progLines= scan2.nextLine();
-        String []Split2=progLines.split(" ");
-            switch (Split2.length) {
+    while(scan2.hasNext()) //While loop from the start to the end of the file
+    {
+        String progLines= scan2.nextLine(); // Stores every line of the file
+        String []Split2=progLines.split(" "); //splits the stored line by spaces
+            switch (Split2.length) //Handling the cases of every line by it's length to store them in the array in appropiate way
+            {
                 case 3:
                     label[i] = Split2[0];
                     inst[i] = Split2[1];
@@ -142,7 +145,7 @@ public class SICXE {
                     var[i] = ";";
                     break;
             }
-        /**---------------ADDRESS-------------**/
+        //--------------- CALCULATING THE ADDRESS FOR EVERY INSTRUCTION-------------
             if(inst[i].equals("START"))
             {
                     address[i] = var[i];
@@ -323,7 +326,7 @@ public class SICXE {
             }
     i++;
 }
-/**----------------------------------Symbol Table----------------------------------**/
+//---------------------------------- Implementing Symbol Table Using HashMap----------------------------------
     HashMap<String, String> map = new HashMap<>();
             System.err.println("----Symbol Table----");
         for(int k = 0; k<46;k++)
@@ -345,14 +348,14 @@ public class SICXE {
             }
         }
         System.out.println();
-/**----------------------------------OPCODE----------------------------------**/
+//---------------------------------- Implementing OPCODE----------------------------------
 
 int flag = 0,decimal = 0;
 String base = null , p = null,opBin = null,disp=null,Format=null,t=null,io=null,nix=null;
-String []nixbpe = new String[6];
+String []nixbpe = new String[6]; //This array used to make everything clearer 
 String opcode [] = new String[100];
 String modif[] = new String[100];
-opcode[0] = "No OPCODE for START";
+opcode[0] = "No OPCODE for START"; //Start doesn't have OPCODE
 for(i =0; i < 46; i++)
 {   
     p= null;
